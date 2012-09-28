@@ -2,8 +2,8 @@
 <?php
 
 /**
- * Class Gallery 
- * @author Jacek Wysocki <jacek.wysocki@gmail.com> 
+ * Class Gallery
+ * @author Jacek Wysocki <jacek.wysocki@gmail.com>
  */
 class Gallery
 {
@@ -25,10 +25,13 @@ class Gallery
     public $options = array(
             'sourcePath::' => 'Source images path',
             'imagesPath::' => 'Output gallery path',
+            'counterStart::' => 'Images names starts from this number',
             'clearSourceGallery:' => 'Clear source gallery images',
             'publicPrefix:' => 'public URL prefix',
             'noConvert::' => 'disable conversion - generate HTML only',
     );
+
+    public $counterStart = 0;
 
     public function __construct($options=array())
     {
@@ -61,7 +64,7 @@ class Gallery
             `rm -rf $imagePath`;
         }
     }
-    
+
 
     public function generate($options = array())
     {
@@ -98,18 +101,19 @@ class Gallery
 
 
         $html = '';
+        $i = $this->counterStart;
         foreach($gallery as $thumb => $big) {
             $html .= strtr($this->pictureTemplate, array(
                 '{thumb}' => $thumb,
                 '{big}' => $big,
-                '{comment}' => 'Obrazek',
+                '{comment}' => 'Image ' . ++$i,
             ))."\n";
 
         }
 
         return $html;
     }
-    
+
 }
 
 
