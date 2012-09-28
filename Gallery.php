@@ -78,7 +78,7 @@ class Gallery
         }
 
         $gallery = array();
-        $i=$j=1;
+        $i = $j = ($this->counterStart + 1);
 
         $imagesDirectory = glob($this->sourcePath . "*.jpg");
         $count = count($imagesDirectory) * count($this->imageSizes);
