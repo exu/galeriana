@@ -46,7 +46,7 @@ class Gallery
         }
 
         foreach($this->imageSizes as $size) {
-            $imagePath = $this->imagesPath . '/' . $size[0];
+            $imagePath = $this->imagesPath . $size[0];
             if(!file_exists($imagePath)) {
                 echo "Creating $imagePath\n";
                 `mkdir -p $imagePath && chmod a+w $imagePath`;
