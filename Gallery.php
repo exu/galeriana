@@ -31,7 +31,7 @@ class Gallery
             'noConvert::' => 'disable conversion - generate HTML only',
     );
 
-    public $counterStart = 0;
+    public $counterStart = 1;
 
     public function __construct($options=array())
     {
@@ -78,7 +78,8 @@ class Gallery
         }
 
         $gallery = array();
-        $i = $j = ($this->counterStart + 1);
+        $i = $this->counterStart;
+        $j = 0;
 
         $imagesDirectory = glob($this->sourcePath . "*.jpg");
         $count = count($imagesDirectory) * count($this->imageSizes);
@@ -106,7 +107,7 @@ class Gallery
             $html .= strtr($this->pictureTemplate, array(
                 '{thumb}' => $thumb,
                 '{big}' => $big,
-                '{comment}' => 'Image ' . ++$i,
+                '{comment}' => 'Image ' . $i++,
             ))."\n";
 
         }
