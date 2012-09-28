@@ -87,12 +87,13 @@ class Gallery
         echo "\n\nStarting image conversion process\n\n";
         foreach ($imagesDirectory as $filename) {
             $name = $i++.".jpg";
+            echo $name . "\n";
             foreach($this->imageSizes as $s => $size) {
                 echo "Converting ($size[0]) " . $j++ . " from $count                  \r";
                 $imagePath = $this->imagesPath . $size[0] . '/' . $name;
 
                 if(!$this->noConvert) {
-                    $cmd = "convert -resize {$size[0]}x{$size[0]} $filename $imagePath";
+                    $cmd = "convert -resize {$size[0]}x{$size[0]} '$filename' '$imagePath'";
                     `$cmd`;
                 }
             }
